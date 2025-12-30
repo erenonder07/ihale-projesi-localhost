@@ -66,14 +66,17 @@ router.get("/", async function(req, res) {
         let whereKosulu = {}; 
         const now = new Date(); 
 
-        if (durum === 'aktif') {                                    
-            whereKosulu.end_date = { [Op.gt]: now };            
-            whereKosulu.status = 1; 
-        } else if (durum === 'kapali')   {                        //ilan-aktif/kapali durumu
+        
+        if (durum === 'kapali') {
             whereKosulu[Op.or] = [
                 { end_date: { [Op.lt]: now } },
                 { status: 0 }
             ];
+        } 
+        
+        else {
+            whereKosulu.end_date = { [Op.gt]: now }; // Tarihi geçmemiş olsun
+            whereKosulu.status = 1;                  // Ve durumu aktif olsun
         }
 
         if (kategoriId && kategoriId !== 'hepsi') {
