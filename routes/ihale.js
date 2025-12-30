@@ -66,10 +66,10 @@ router.get("/", async function(req, res) {
         let whereKosulu = {}; 
         const now = new Date(); 
 
-        if (durum === 'aktif') {                                    //
+        if (durum === 'aktif') {                                    
             whereKosulu.end_date = { [Op.gt]: now };            
             whereKosulu.status = 1; 
-        } else if (durum === 'kapali')   {                 //       //ilan-aktif/kapali durumu
+        } else if (durum === 'kapali')   {                        //ilan-aktif/kapali durumu
             whereKosulu[Op.or] = [
                 { end_date: { [Op.lt]: now } },
                 { status: 0 }

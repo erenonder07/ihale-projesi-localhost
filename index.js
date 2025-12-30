@@ -84,7 +84,7 @@ async function syncDatabase() {
 }
 syncDatabase();
 
-// Rotalar
+
 app.use(authRoutes); 
 app.use(ihaleRoutes); 
 
